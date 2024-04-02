@@ -1,0 +1,23 @@
+name: Publish to PyPI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build_and_publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3 # Checkout code from your repository
+      - name: Set up Python version
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'  # Replace with your project's compatible Python version (e.g., 3.8, 3.9)
+      - name: Install dependencies
+        run: pip install setuptools twine
+      - name: Build distribution
+        run: python setup.py sdist bdist_wheel
+      - name: Authenticate to PyPI
+        uses: pypa/gh-action-pypi-publish@v1  # Action to publish to PyPI
+        with:
+            token: ${{ secrets.PYPI_TOKEN }}  # Replace with your PyPI token secret name
