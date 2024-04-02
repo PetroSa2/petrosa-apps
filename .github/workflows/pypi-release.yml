@@ -14,7 +14,7 @@ jobs:
         with:
           python-version: '3.10'  # Replace with your project's compatible Python version (e.g., 3.8, 3.9)
       - name: Install dependencies
-        run: pip install setuptools twine
+        run: pip install setuptools twine build
       - name: Build distribution
         run: python -m build
       - name: Publish package distributions to PyPI
