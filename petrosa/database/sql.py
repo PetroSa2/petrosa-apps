@@ -6,7 +6,7 @@ import mysql.connector
 
 
 ver = pkg_resources.get_distribution("petrosa").version
-logging.info("petrosa-utils version: " + ver)
+logging.debug("petrosa-utils version: " + ver)
 
 
 def connect_mysql():
@@ -53,7 +53,7 @@ def build_sql(record_list, table, mode="REPLACE") -> str:
 
 
 def update_sql(record_list: list, table: str, mode="REPLACE"):
-    logging.info(f"Inserting {len(record_list)} records on {table}")
+    logging.debug(f"Inserting {len(record_list)} records on {table}")
     cnx, cursor = connect_mysql()
     sql = build_sql(record_list, table, mode)
 
@@ -65,15 +65,15 @@ def update_sql(record_list: list, table: str, mode="REPLACE"):
 
 
 def run_generic_sql(sql_str):
-    logging.info(f"Running Generic SQL {sql_str}")
+    logging.debug(f"Running Generic SQL {sql_str}")
     cnx, cursor = connect_mysql()
 
     cursor.execute(sql_str)
     if(sql_str[:6] == "SELECT" or sql_str[:6] == "select" or sql_str[:6] == "Select"):
-        logging.info("Returning rows")
+        logging.debug("Returning rows")
         rows = cursor.fetchall()
     else:
-        logging.info("Returning None")
+        logging.debug("Returning None")
         rows = None
     cnx.commit()
     cursor.close()

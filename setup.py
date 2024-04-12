@@ -11,7 +11,7 @@ def read(*paths, **kwargs):
 
 setup(
     name="petrosa",  # Replace with your project's name
-    version="0.0.56",  # Replace with your project's version
+    version="0.0.57",  # Replace with your project's version
     description="Human-Robot-Quant for markets",
     long_description=read("README.md"),
     long_description_content_type="text/markdown",

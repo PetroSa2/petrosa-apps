@@ -35,7 +35,7 @@ def inside_bar_buy(candles, timeframe, periods=126):
     dat = dat.sort_index(ascending=True)
 
     if len(dat) < periods:
-        logging.info('Error: insufficient data')
+        logging.warn('Error: insufficient data')
         return {}
 
     close = float(list(dat['Close'])[-1])
@@ -80,7 +80,7 @@ def inside_bar_sell(candles, timeframe, periods=126):
     dat = dat.sort_index(ascending=True)
 
     if len(dat) < periods:
-        logging.info('Error: insufficient data')
+        logging.warn('Error: insufficient data')
         return {}
 
     close = float(list(dat['Close'])[-1])
@@ -119,7 +119,7 @@ def continuous_stitch_buy(candles, timeframe, periods=126):
     dat = dat.sort_index(ascending=True)
 
     if len(dat) < periods:
-        logging.info('Error: insufficient data')
+        logging.warn('Error: insufficient data')
         return {}
 
     close = float(list(dat['Close'])[-1])
@@ -165,7 +165,7 @@ def continuous_stitch_sell(candles, timeframe, periods=126):
     dat = dat.sort_index(ascending=True)
 
     if len(dat) < periods:
-        logging.info('Error: insufficient data')
+        logging.warn('Error: insufficient data')
         return {}
 
     low = float(list(dat['Low'])[-1])
@@ -214,7 +214,7 @@ def setup_91_buy(candles, timeframe, periods=126):
     dat = dat.sort_index(ascending=True)
 
     if len(dat) < periods:
-        logging.info('Error: insufficient data')
+        logging.warn('Error: insufficient data')
         return {}
 
     close = float(dat['Close'].iloc[-1])
@@ -253,7 +253,7 @@ def setup_91_sell(candles, timeframe, periods=126):
     dat = dat.sort_index(ascending=True)
 
     if len(dat) < periods:
-        logging.info('Error: insufficient data')
+        logging.warn('Error: insufficient data')
         return {}
 
     close = float(dat['Close'].iloc[-1])
@@ -292,7 +292,7 @@ def setup_92_buy(candles, timeframe, periods=126):
     dat = dat.sort_index(ascending=True)
 
     if len(dat) < periods:
-        logging.info('Error: insufficient data')
+        logging.warn('Error: insufficient data')
         return {}
 
     low = float(dat['Low'].iloc[-1])
@@ -331,7 +331,7 @@ def setup_92_sell(candles, timeframe, periods=126):
     dat = dat.sort_index(ascending=True)
 
     if len(dat) < periods:
-        logging.info('Error: insufficient data')
+        logging.warn('Error: insufficient data')
         return {}
 
     low = float(dat['Low'].iloc[-1])
@@ -370,7 +370,7 @@ def setup_93_buy(candles, timeframe, periods=126):
     dat = dat.sort_index(ascending=True)
 
     if len(dat) < periods:
-        logging.info('Error: insufficient data')
+        logging.warn('Error: insufficient data')
         return {}
 
     ema9 = dat["Close"].ewm(span=9, min_periods=8, adjust=True).mean()
@@ -410,7 +410,7 @@ def setup_93_sell(candles, timeframe, periods=126):
     dat = dat.sort_index(ascending=True)
 
     if len(dat) < periods:
-        logging.info('Error: insufficient data')
+        logging.warn('Error: insufficient data')
         return {}
 
     ema9 = dat["Close"].ewm(span=9, min_periods=8, adjust=True).mean()
@@ -450,7 +450,7 @@ def setup_94_buy(candles, timeframe, periods=126):
     dat = dat.sort_index(ascending=True)
 
     if len(dat) < periods:
-        logging.info('Error: insufficient data')
+        logging.warn('Error: insufficient data')
         return {}
 
     ema9 = dat["Close"].ewm(span=9, min_periods=8, adjust=True).mean()
@@ -488,7 +488,7 @@ def setup_94_sell(candles, timeframe, periods=126):
     dat = dat.sort_index(ascending=True)
 
     if len(dat) < periods:
-        logging.info('Error: insufficient data')
+        logging.warn('Error: insufficient data')
         return {}
 
     ema9 = dat["Close"].ewm(span=9, min_periods=8, adjust=True).mean()
@@ -530,7 +530,7 @@ def fox_trap_buy(candles, timeframe, periods=126):
     dat = dat.sort_index(ascending=True)
 
     if len(dat) < periods:
-        logging.info('Error: insufficient data')
+        logging.warn('Error: insufficient data')
         return {}
 
     close = float(list(dat['Close'])[-1])
@@ -577,7 +577,7 @@ def fox_trap_sell(candles, timeframe, periods=126):
     dat = dat.sort_index(ascending=True)
 
     if len(dat) < periods:
-        logging.info('Error: insufficient data')
+        logging.warn('Error: insufficient data')
         return {}
 
     close = float(list(dat['Close'])[-1])
@@ -622,7 +622,7 @@ def bear_trap_buy(candles, timeframe, periods=126):
     dat = dat.sort_index(ascending=True)
 
     if len(dat) < periods:
-        logging.info('Error: insufficient data')
+        logging.warn('Error: insufficient data')
         return {}
 
     close = float(list(dat['Close'])[-1])
@@ -667,7 +667,7 @@ def bear_trap_sell(candles, timeframe, periods=126):
     dat = dat.sort_index(ascending=True)
 
     if len(dat) < periods:
-        logging.info('Error: insufficient data')
+        logging.warn('Error: insufficient data')
         return {}
 
     close = float(list(dat['Close'])[-1])
@@ -713,7 +713,7 @@ def bbss_sell(candles, timeframe, periods=30):
     dat = dat.sort_index(ascending=True)
 
     if len(dat) < periods:
-        logging.info('Error: insufficient data')
+        logging.warn('Error: insufficient data')
         return {}
 
     low = float(list(dat['Low'])[-1])
@@ -744,7 +744,7 @@ def bbss_buy(candles, timeframe, periods=30):
     dat = dat.sort_index(ascending=True)
 
     if len(dat) < periods:
-        logging.info('Error: insufficient data')
+        logging.warn('Error: insufficient data')
         return {}
 
     low = float(list(dat['Low'])[-1])

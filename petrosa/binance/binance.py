@@ -52,14 +52,14 @@ def request_it(request) -> str:
     send_data = json.dumps(send_data)
     
     
-    logging.info(send_data)
+    logging.debug(send_data)
     
     resp = requests.post(
                             os.environ.get('BINANCE_ORDERS_ENDPOINT', ""), 
                             data=send_data
                             )
     
-    logging.info(resp.text)
+    logging.debug(resp.text)
     
     return resp.text
     
