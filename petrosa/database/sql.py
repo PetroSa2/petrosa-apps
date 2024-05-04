@@ -8,8 +8,10 @@ import mysql.connector
 ver = pkg_resources.get_distribution("petrosa").version
 logging.debug("petrosa-utils version: " + ver)
 
+cnx = None
 
 def connect_mysql():
+    global cnx
     cnx = mysql.connector.connect(
         user=os.getenv("MYSQL_USER"),
         password=os.getenv("MYSQL_PASSWORD"),
@@ -18,10 +20,8 @@ def connect_mysql():
         connection_timeout=30,
     )
 
-    cursor = cnx.cursor(buffered=True, dictionary=True)
 
-    return cnx, cursor
-
+    return cnx
 
 def build_sql(record_list, table, mode="REPLACE") -> str:
     sql = f"{mode} INTO `{table}` ("
@@ -54,19 +54,25 @@ def build_sql(record_list, table, mode="REPLACE") -> str:
 
 def update_sql(record_list: list, table: str, mode="REPLACE"):
     logging.debug(f"Inserting {len(record_list)} records on {table}")
-    cnx, cursor = connect_mysql()
+    cnx = connect_mysql()
     sql = build_sql(record_list, table, mode)
 
+    cursor = cnx.cursor(buffered=True, dictionary=True)
+    cursor = cnx.cursor(buffered=True, dictionary=True)
     cursor.execute(sql)
 
     cnx.commit()
     cursor.close()
-    cnx.close()
 
 
 def run_generic_sql(sql_str):
+    global cnx, cursor
     logging.debug(f"Running Generic SQL {sql_str}")
-    cnx, cursor = connect_mysql()
+
+    if cnx is None or cursor is None or not cnx.is_connected():
+        cnx = connect_mysql()
+
+    cursor = cnx.cursor(buffered=True, dictionary=True)
 
     cursor.execute(sql_str)
     if(sql_str[:6] == "SELECT" or sql_str[:6] == "select" or sql_str[:6] == "Select"):
@@ -77,6 +83,5 @@ def run_generic_sql(sql_str):
         rows = None
     cnx.commit()
     cursor.close()
-    cnx.close()
 
     return rows
