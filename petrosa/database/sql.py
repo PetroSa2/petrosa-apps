@@ -19,8 +19,6 @@ def connect_mysql():
         database=os.getenv("MYSQL_DB"),
         connection_timeout=30,
     )
-
-
     return cnx
 
 def build_sql(record_list, table, mode="REPLACE") -> str:
@@ -59,11 +57,10 @@ def update_sql(record_list: list, table: str, mode="REPLACE"):
 
     sql = build_sql(record_list, table, mode)
 
-    cursor = cnx.cursor(buffered=True, dictionary=True)
-
-
     if cnx is None or cursor is None or not cnx.is_connected():
         cnx = connect_mysql()    
+
+    cursor = cnx.cursor(buffered=True, dictionary=True)
 
     cursor = cnx.cursor(buffered=True, dictionary=True)
     cursor = cnx.cursor(buffered=True, dictionary=True)
