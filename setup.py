@@ -11,7 +11,7 @@ def read(*paths, **kwargs):
 
 setup(
     name="petrosa",  # Replace with your project's name
-    version="0.0.64",  # Replace with your project's version
+    version="0.0.65",  # Replace with your project's version
     description="Human-Robot-Quant for markets",
     long_description=read("README.md"),
     long_description_content_type="text/markdown",
@@ -25,6 +25,7 @@ setup(
         "mysql-connector",
         "opentelemetry-distro",
         "opentelemetry-exporter-otlp",
+        "retry",
     ],
     classifiers=[
         # Add relevant classifiers from https://pypi.org/classifiers/

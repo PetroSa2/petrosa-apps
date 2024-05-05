@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "petrosa"
-version = "0.0.64"
+version = "0.0.65"
 authors = [
   { name="@yurisa2", email="yuri@sa2.com.br" },
 ]
@@ -17,7 +17,9 @@ dependencies = ["pandas",
                 "requests",
                 "mysql-connector",
                 "opentelemetry-distro",
-                "opentelemetry-exporter-otlp"                ]
+                "opentelemetry-exporter-otlp",
+                "retry"
+                         ]
 
 classifiers = [
     "Programming Language :: Python :: 3",
