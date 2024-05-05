@@ -53,6 +53,8 @@ def build_sql(record_list, table, mode="REPLACE") -> str:
 
 
 def update_sql(record_list: list, table: str, mode="REPLACE"):
+    global cnx
+
     logging.debug(f"Inserting {len(record_list)} records on {table}")
 
     sql = build_sql(record_list, table, mode)
@@ -69,7 +71,7 @@ def update_sql(record_list: list, table: str, mode="REPLACE"):
 
 
 def run_generic_sql(sql_str):
-    global cnx, cursor
+    global cnx
     logging.debug(f"Running Generic SQL {sql_str}")
 
     if cnx is None or cursor is None or not cnx.is_connected():
