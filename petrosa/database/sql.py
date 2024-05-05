@@ -57,7 +57,7 @@ def update_sql(record_list: list, table: str, mode="REPLACE"):
 
     sql = build_sql(record_list, table, mode)
 
-    if cnx is None or cursor is None or not cnx.is_connected():
+    if cnx is None or not cnx.is_connected():
         cnx = connect_mysql()    
 
     cursor = cnx.cursor(buffered=True, dictionary=True)
@@ -74,7 +74,7 @@ def run_generic_sql(sql_str):
     global cnx
     logging.debug(f"Running Generic SQL {sql_str}")
 
-    if cnx is None or cursor is None or not cnx.is_connected():
+    if cnx is None or not cnx.is_connected():
         cnx = connect_mysql()
 
     cursor = cnx.cursor(buffered=True, dictionary=True)
